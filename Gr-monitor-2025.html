@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GR Monitor</title>
+<style>
+body{font-family:sans-serif;background:#f2f2f7;padding:20px}
+.box{background:#fff;padding:15px;border-radius:14px;margin:10px 0}
+</style>
+</head>
+<body>
+<h1>GR Monitor 2025</h1>
+<div class="box">Visite totali: <span id="v1">...</span></div>
+<div class="box">Click Dagospia: <span id="v2">...</span></div>
+<div class="box">Click Fanpage: <span id="v3">...</span></div>
+<div class="box">Click La Sintesi: <span id="v4">...</span></div>
+<script>
+function getCounter(id,key){
+ fetch('https://counterapi.dev/api/'+key)
+ .then(r=>r.json())
+ .then(d=>document.getElementById(id).innerText=d.count||0)
+ .catch(()=>document.getElementById(id).innerText='n.d.');
+}
+getCounter('v1','gr_home_visits');
+getCounter('v2','gr_dagospia_click');
+getCounter('v3','gr_fanpage_click');
+getCounter('v4','gr_lasintesi_click');
+</script>
+</body>
+</html>
